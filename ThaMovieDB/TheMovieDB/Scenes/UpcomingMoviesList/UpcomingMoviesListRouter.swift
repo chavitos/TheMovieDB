@@ -1,6 +1,6 @@
 //
 //  UpcomingMoviesListRouter.swift
-//  ThaMovieDB
+//  TheMovieDB
 //
 //  Created by Tiago Chaves on 03/10/18.
 //  Copyright (c) 2018 TiagoChaves. All rights reserved.

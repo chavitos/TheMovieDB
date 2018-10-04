@@ -1,6 +1,6 @@
 //
-//  ThaMovieDBUITests.swift
-//  ThaMovieDBUITests
+//  TheMovieDBUITests.swift
+//  TheMovieDBUITests
 //
 //  Created by Tiago Chaves on 03/10/18.
 //  Copyright © 2018 TiagoChaves. All rights reserved.
@@ -8,7 +8,7 @@
 
 import XCTest
 
-class ThaMovieDBUITests: XCTestCase {
+class TheMovieDBUITests: XCTestCase {
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.

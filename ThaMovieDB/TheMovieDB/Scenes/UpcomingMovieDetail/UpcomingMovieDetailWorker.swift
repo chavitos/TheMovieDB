@@ -1,6 +1,6 @@
 //
-//  UpcomingMoviesListModels.swift
-//  ThaMovieDB
+//  UpcomingMovieDetailWorker.swift
+//  TheMovieDB
 //
 //  Created by Tiago Chaves on 03/10/18.
 //  Copyright (c) 2018 TiagoChaves. All rights reserved.
@@ -12,20 +12,9 @@
 
 import UIKit
 
-enum UpcomingMoviesList
+class UpcomingMovieDetailWorker
 {
-  // MARK: Use cases
-  
-  enum Something
+  func doSomeWork()
   {
-    struct Request
-    {
-    }
-    struct Response
-    {
-    }
-    struct ViewModel
-    {
-    }
   }
 }

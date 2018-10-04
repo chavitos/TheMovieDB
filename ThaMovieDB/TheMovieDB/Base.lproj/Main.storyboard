@@ -17,26 +17,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="5f6-lR-Vgj">
-                                <rect key="frame" x="0.0" y="120" width="320" height="448"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Hxx-sA-ZX3">
-                                    <size key="itemSize" width="129" height="186"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="oun-bu-rk4">
-                                        <rect key="frame" x="0.0" y="0.0" width="129" height="186"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="129" height="186"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </view>
-                                    </collectionViewCell>
-                                </cells>
-                            </collectionView>
                             <searchBar clipsSubviews="YES" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="0gN-pd-Wxc">
                                 <rect key="frame" x="0.0" y="64" width="320" height="56"/>
                                 <color key="barTintColor" red="0.035294117649999998" green="0.10980392160000001" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -45,29 +25,41 @@
                                     <string>Title</string>
                                     <string>Title</string>
                                 </scopeButtonTitles>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="wkL-w4-HyB"/>
+                                </connections>
                             </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fUN-v3-Piv">
+                                <rect key="frame" x="0.0" y="120" width="320" height="448"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="CAE-Aa-Fr1"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="lYR-lH-Eq2"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="0gN-pd-Wxc" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="7iE-pk-UlJ"/>
-                            <constraint firstItem="5f6-lR-Vgj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Gor-zG-Duv"/>
-                            <constraint firstItem="5f6-lR-Vgj" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Lgr-fg-ESv"/>
-                            <constraint firstItem="5f6-lR-Vgj" firstAttribute="top" secondItem="0gN-pd-Wxc" secondAttribute="bottom" id="MUT-kc-gSw"/>
+                            <constraint firstItem="fUN-v3-Piv" firstAttribute="top" secondItem="0gN-pd-Wxc" secondAttribute="bottom" id="OID-EV-f63"/>
                             <constraint firstItem="0gN-pd-Wxc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="RcF-eA-THU"/>
-                            <constraint firstItem="5f6-lR-Vgj" firstAttribute="top" secondItem="0gN-pd-Wxc" secondAttribute="bottom" id="bB3-vj-Ccz"/>
-                            <constraint firstItem="5f6-lR-Vgj" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="c1q-05-HEz"/>
                             <constraint firstItem="0gN-pd-Wxc" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="ddH-ju-1Fi"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fUN-v3-Piv" secondAttribute="trailing" id="gXt-4g-jyv"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="fUN-v3-Piv" secondAttribute="bottom" id="njf-Ng-bPO"/>
+                            <constraint firstItem="fUN-v3-Piv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="wKa-nb-6bc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Em breve" id="dgg-OQ-1SU"/>
                     <connections>
+                        <outlet property="searchBar" destination="0gN-pd-Wxc" id="PXf-Oe-6na"/>
+                        <outlet property="upcomingMoviesTable" destination="fUN-v3-Piv" id="GTl-gk-bey"/>
                         <segue destination="fcg-Kr-3Vd" kind="showDetail" id="Rs8-Wy-2hn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="871.875" y="765.84507042253517"/>
+            <point key="canvasLocation" x="934" y="766"/>
         </scene>
         <!--Upcoming Movie Detail View Controller-->
         <scene sceneID="GYw-It-G5j">

@@ -1,15 +1,15 @@
 //
-//  ThaMovieDBTests.swift
-//  ThaMovieDBTests
+//  TheMovieDBTests.swift
+//  TheMovieDBTests
 //
 //  Created by Tiago Chaves on 03/10/18.
 //  Copyright © 2018 TiagoChaves. All rights reserved.
 //
 
 import XCTest
-@testable import ThaMovieDB
+@testable import TheMovieDB
 
-class ThaMovieDBTests: XCTestCase {
+class TheMovieDBTests: XCTestCase {
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
