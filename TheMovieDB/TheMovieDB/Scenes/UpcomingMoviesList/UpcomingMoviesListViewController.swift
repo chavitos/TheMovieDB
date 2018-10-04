@@ -81,6 +81,8 @@ class UpcomingMoviesListViewController: UIViewController, UpcomingMoviesListDisp
     var nextPage:Int = 1
     var upcomingMoviesList:[DisplayUpcomingMovie] = []
     
+    let upcomingCellIdentifier = "movieCell"
+    
     //MARK: - Private Methods
     
     private func getUpcomingMovies(forPage page:Int)
@@ -121,8 +123,18 @@ extension UpcomingMoviesListViewController:UITableViewDataSource,UITableViewDele
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        return UITableViewCell()
-    }    
+        let upcomingMovie = upcomingMoviesList[indexPath.row]
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: upcomingCellIdentifier, for: indexPath) as! UpcomingMovieTableViewCell
+        cell.configCell(withUpcomingMovie: upcomingMovie)
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+        cell?.isSelected = false
+    }
 }
 
 extension UpcomingMoviesListViewController:UISearchBarDelegate{
