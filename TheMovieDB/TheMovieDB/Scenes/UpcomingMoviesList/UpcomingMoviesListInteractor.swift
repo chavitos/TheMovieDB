@@ -14,6 +14,7 @@ import UIKit
 
 protocol UpcomingMoviesListBusinessLogic
 {
+    func getGenres(request: UpcomingMoviesList.GenresList.Request)
     func getUpcomingMovies(request: UpcomingMoviesList.MoviesList.Request)
     func getFilteredUpcomingMoview(request:UpcomingMoviesList.FilteredMovies.Request)
 }
@@ -27,9 +28,23 @@ class UpcomingMoviesListInteractor: UpcomingMoviesListBusinessLogic, UpcomingMov
 {
     var presenter: UpcomingMoviesListPresentationLogic?
     var worker: UpcomingMoviesListWorker?
+    var genreWorker: GenresWorker?
     //var name: String = ""
     
     // MARK: - UpcomingMoviesListBusinessLogic
+    
+    func getGenres(request: UpcomingMoviesList.GenresList.Request) {
+        
+        let networkWorker = GenresNetworkWorker()
+        genreWorker = GenresWorker(networkWorker, nil)
+        genreWorker?.getGenresList(completionHandler: { (genreData, error) in
+            
+            if error == nil, let genreData = genreData {
+                
+                Genre.add(genres: genreData)
+            }
+        })
+    }
     
     func getUpcomingMovies(request: UpcomingMoviesList.MoviesList.Request)
     {

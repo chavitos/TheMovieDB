@@ -16,10 +16,11 @@ public enum MovieDBRequests: URLRequestConvertible {
     
     case upcomingMovies(Int)
     case movieDetail(String)
+    case genres
     
     var method: HTTPMethod {
         switch self {
-        case .upcomingMovies, .movieDetail:
+        case .upcomingMovies, .movieDetail, .genres:
             return .get
         }
     }
@@ -30,6 +31,8 @@ public enum MovieDBRequests: URLRequestConvertible {
             return "/movie/upcoming"
         case .movieDetail(let movieId):
             return movieId
+        case .genres:
+            return "/genre/movie/list"
         }
     }
     
@@ -39,6 +42,8 @@ public enum MovieDBRequests: URLRequestConvertible {
             return ["api_key": MovieDBRequests.apiKey,"language":"en-US","page":page]
         case .movieDetail:
             return ["api_key": MovieDBRequests.apiKey]
+        case .genres:
+            return ["api_key": MovieDBRequests.apiKey,"language":"en-US"]
         }
     }
     

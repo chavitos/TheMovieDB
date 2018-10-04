@@ -60,6 +60,13 @@ class UpcomingMoviesListPresenter: UpcomingMoviesListPresentationLogic
             
             for upcomingMovie in upcomingMovies {
                 
+                let ids = upcomingMovie.genre
+                var genresNames:[String] = []
+                if let genres = Genre.getGenreData(withIds: ids).0 {
+                    
+                    genresNames = genres.map{ return $0.name }
+                }
+                
                 let releaseDate = dateFormatterToDate.date(from: upcomingMovie.releaseDate)
                 let formatedReleaseDate = dateFormatterToString.string(from: releaseDate ?? Date())
                 
@@ -67,7 +74,7 @@ class UpcomingMoviesListPresenter: UpcomingMoviesListPresentationLogic
                                                                 backdropPath: upcomingMovie.backdropPath ?? "",
                                                                 overview: upcomingMovie.overview,
                                                                 releaseDate: formatedReleaseDate,
-                                                                genre: [],
+                                                                genre: genresNames,
                                                                 title: upcomingMovie.title)
                 
                 displayUpcomingMovies.append(displayUpcomingMovie)

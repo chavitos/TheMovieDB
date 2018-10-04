@@ -29,6 +29,8 @@ class UpcomingMovieTableViewCell: UITableViewCell {
     
     func configCell(withUpcomingMovie upcomingMovie:DisplayUpcomingMovie) {
         
+        genreCollection.dataSource = self
+        
         movieTitleLabel.text = upcomingMovie.title
         releaseDateLabel.text = upcomingMovie.releaseDate
         

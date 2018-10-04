@@ -16,6 +16,22 @@ enum UpcomingMoviesList
 {
     // MARK: Use cases
     
+    enum GenresList{
+        
+        struct Request
+        {
+            
+        }
+        struct Response
+        {
+            var genres:GenresResult
+        }
+        struct ViewModel
+        {
+            
+        }
+    }
+    
     enum MoviesList
     {
         struct Request

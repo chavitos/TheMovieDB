@@ -70,6 +70,7 @@ class UpcomingMoviesListViewController: UIViewController, UpcomingMoviesListDisp
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        getGenres()
         getUpcomingMovies(forPage:nextPage)
     }
     
@@ -95,6 +96,12 @@ class UpcomingMoviesListViewController: UIViewController, UpcomingMoviesListDisp
         
         let request = UpcomingMoviesList.FilteredMovies.Request(text:name)
         interactor?.getFilteredUpcomingMoview(request: request)
+    }
+    
+    private func getGenres() {
+        
+        let request = UpcomingMoviesList.GenresList.Request()
+        interactor?.getGenres(request:request)
     }
     
     //MARK: - UpcomingMoviesListDisplayLogic Methods
