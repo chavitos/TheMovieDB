@@ -113,8 +113,11 @@ class UpcomingMoviesListViewController: UIViewController, UpcomingMoviesListDisp
         if viewModel.error == nil, let upcomingMovies = viewModel.upcomingMovies {
             
             nextPage = upcomingMovies.nextPage
-            upcomingMoviesList = upcomingMovies.upcomingMovies
-            self.upcomingMoviesTable.reloadData()
+            upcomingMoviesList += upcomingMovies.upcomingMovies
+            
+            DispatchQueue.main.async {
+                self.upcomingMoviesTable.reloadData()
+            }
         }
     }
     
@@ -145,6 +148,19 @@ extension UpcomingMoviesListViewController:UITableViewDataSource,UITableViewDele
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
         cell?.isSelected = false
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        if !filtering {
+            
+            if indexPath.row == upcomingMoviesList.count - 1 {
+                
+                if nextPage > 0 {
+                    getUpcomingMovies(forPage:nextPage)
+                }
+            }
+        }
     }
 }
 
