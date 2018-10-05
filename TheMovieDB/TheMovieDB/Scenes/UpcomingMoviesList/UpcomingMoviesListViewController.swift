@@ -155,7 +155,7 @@ extension UpcomingMoviesListViewController:UITableViewDataSource,UITableViewDele
         let cell = tableView.cellForRow(at: indexPath)
         cell?.isSelected = false
         
-        let upcomingMovie = upcomingMoviesList[indexPath.row]
+        let upcomingMovie = filtering ? filteredUpcomingMoviesList[indexPath.row] : upcomingMoviesList[indexPath.row]
         let request = UpcomingMoviesList.MovieDetail.Request(upcomingMovie:upcomingMovie)
         interactor?.saveUpcomingMovie(request: request)
     }
