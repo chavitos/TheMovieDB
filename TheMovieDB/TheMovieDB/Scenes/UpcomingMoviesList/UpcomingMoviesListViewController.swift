@@ -16,6 +16,7 @@ protocol UpcomingMoviesListDisplayLogic: class
 {
     func displayUpcomingMovies(viewModel: UpcomingMoviesList.MoviesList.ViewModel)
     func displayFilteredUpcomingMovies(viewModel: UpcomingMoviesList.FilteredMovies.ViewModel)
+    func displayUpcomingMovieDetail(viewModel: UpcomingMoviesList.MovieDetail.ViewModel)
 }
 
 class UpcomingMoviesListViewController: UIViewController, UpcomingMoviesListDisplayLogic
@@ -127,6 +128,11 @@ class UpcomingMoviesListViewController: UIViewController, UpcomingMoviesListDisp
         filtering = true
         upcomingMoviesTable.reloadData()
     }
+    
+    func displayUpcomingMovieDetail(viewModel: UpcomingMoviesList.MovieDetail.ViewModel) {
+        
+        self.performSegue(withIdentifier: "UpcomingMovieDetail", sender: nil)
+    }
 }
 
 extension UpcomingMoviesListViewController:UITableViewDataSource,UITableViewDelegate{
@@ -148,6 +154,10 @@ extension UpcomingMoviesListViewController:UITableViewDataSource,UITableViewDele
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
         cell?.isSelected = false
+        
+        let upcomingMovie = upcomingMoviesList[indexPath.row]
+        let request = UpcomingMoviesList.MovieDetail.Request(upcomingMovie:upcomingMovie)
+        interactor?.saveUpcomingMovie(request: request)
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

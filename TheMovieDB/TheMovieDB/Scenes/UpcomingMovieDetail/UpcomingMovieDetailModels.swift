@@ -14,18 +14,20 @@ import UIKit
 
 enum UpcomingMovieDetail
 {
-  // MARK: Use cases
-  
-  enum Something
-  {
-    struct Request
+    // MARK: Use cases
+    
+    enum MovieDetail
     {
+        struct Request
+        {
+        }
+        struct Response
+        {
+            var upcomingMoviesDetail:DisplayUpcomingMovie
+        }
+        struct ViewModel
+        {
+            var upcomingMoviesDetail:DisplayUpcomingMovie
+        }
     }
-    struct Response
-    {
-    }
-    struct ViewModel
-    {
-    }
-  }
 }

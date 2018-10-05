@@ -14,18 +14,18 @@ import UIKit
 
 protocol UpcomingMovieDetailPresentationLogic
 {
-  func presentSomething(response: UpcomingMovieDetail.Something.Response)
+    func presentMovieDetail(response: UpcomingMovieDetail.MovieDetail.Response)
 }
 
 class UpcomingMovieDetailPresenter: UpcomingMovieDetailPresentationLogic
 {
-  weak var viewController: UpcomingMovieDetailDisplayLogic?
-  
-  // MARK: Do something
-  
-  func presentSomething(response: UpcomingMovieDetail.Something.Response)
-  {
-    let viewModel = UpcomingMovieDetail.Something.ViewModel()
-    viewController?.displaySomething(viewModel: viewModel)
-  }
+    weak var viewController: UpcomingMovieDetailDisplayLogic?
+    
+    // MARK: - Present Movie Detail
+    
+    func presentMovieDetail(response: UpcomingMovieDetail.MovieDetail.Response) {
+        
+        let viewModel = UpcomingMovieDetail.MovieDetail.ViewModel(upcomingMoviesDetail: response.upcomingMoviesDetail)
+        viewController?.displayMovieDetail(viewModel: viewModel)
+    }
 }

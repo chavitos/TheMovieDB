@@ -17,11 +17,12 @@ protocol UpcomingMoviesListBusinessLogic
     func getGenres(request: UpcomingMoviesList.GenresList.Request)
     func getUpcomingMovies(request: UpcomingMoviesList.MoviesList.Request)
     func getFilteredUpcomingMoview(request:UpcomingMoviesList.FilteredMovies.Request)
+    func saveUpcomingMovie(request:UpcomingMoviesList.MovieDetail.Request)
 }
 
 protocol UpcomingMoviesListDataStore
 {
-    //var name: String { get set }
+    var upcomingMovie:DisplayUpcomingMovie? { get set }
 }
 
 class UpcomingMoviesListInteractor: UpcomingMoviesListBusinessLogic, UpcomingMoviesListDataStore
@@ -29,7 +30,7 @@ class UpcomingMoviesListInteractor: UpcomingMoviesListBusinessLogic, UpcomingMov
     var presenter: UpcomingMoviesListPresentationLogic?
     var worker: UpcomingMoviesListWorker?
     var genreWorker: GenresWorker?
-    //var name: String = ""
+    var upcomingMovie: DisplayUpcomingMovie?
     
     // MARK: - UpcomingMoviesListBusinessLogic
     
@@ -67,5 +68,11 @@ class UpcomingMoviesListInteractor: UpcomingMoviesListBusinessLogic, UpcomingMov
     func getFilteredUpcomingMoview(request: UpcomingMoviesList.FilteredMovies.Request) {
         let response = UpcomingMoviesList.FilteredMovies.Response(text:request.text, upcomingMovies: request.upcomingMovies)
         presenter?.presentFilteredUpcomingMovies(response:response)
+    }
+    
+    func saveUpcomingMovie(request: UpcomingMoviesList.MovieDetail.Request) {
+        self.upcomingMovie = request.upcomingMovie
+        let response = UpcomingMoviesList.MovieDetail.Response()
+        presenter?.presentUpcomingMovieDetail(response: response)
     }
 }

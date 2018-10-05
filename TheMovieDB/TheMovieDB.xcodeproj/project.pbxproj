@@ -311,12 +311,12 @@
 		E9CCFCFA2165878E0055648C /* UpcomingMovieDetail */ = {
 			isa = PBXGroup;
 			children = (
-				E9CCFD07216588070055648C /* UpcomingMovieDetailPresenter.swift */,
-				E9CCFD08216588070055648C /* UpcomingMovieDetailWorker.swift */,
-				E9CCFD09216588070055648C /* UpcomingMovieDetailRouter.swift */,
-				E9CCFD0A216588070055648C /* UpcomingMovieDetailModels.swift */,
 				E9CCFD0B216588070055648C /* UpcomingMovieDetailViewController.swift */,
 				E9CCFD0C216588070055648C /* UpcomingMovieDetailInteractor.swift */,
+				E9CCFD08216588070055648C /* UpcomingMovieDetailWorker.swift */,
+				E9CCFD07216588070055648C /* UpcomingMovieDetailPresenter.swift */,
+				E9CCFD09216588070055648C /* UpcomingMovieDetailRouter.swift */,
+				E9CCFD0A216588070055648C /* UpcomingMovieDetailModels.swift */,
 			);
 			path = UpcomingMovieDetail;
 			sourceTree = "<group>";

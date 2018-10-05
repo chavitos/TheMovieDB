@@ -16,6 +16,7 @@ protocol UpcomingMoviesListPresentationLogic
 {
     func presentUpcomingMovies(response: UpcomingMoviesList.MoviesList.Response)
     func presentFilteredUpcomingMovies(response: UpcomingMoviesList.FilteredMovies.Response)
+    func presentUpcomingMovieDetail(response: UpcomingMoviesList.MovieDetail.Response)
 }
 
 class UpcomingMoviesListPresenter: UpcomingMoviesListPresentationLogic
@@ -51,6 +52,13 @@ class UpcomingMoviesListPresenter: UpcomingMoviesListPresentationLogic
         viewController?.displayFilteredUpcomingMovies(viewModel: viewModel)
     }
     
+    func presentUpcomingMovieDetail(response: UpcomingMoviesList.MovieDetail.Response) {
+        let viewModel = UpcomingMoviesList.MovieDetail.ViewModel()
+        viewController?.displayUpcomingMovieDetail(viewModel: viewModel)
+    }
+    
+    //MARK: - Private Methods
+    
     private func getDisplayUpcomingMoviesResult(_ upcomingResult:UpcomingMovieResult) -> DisplayUpcomingMoviesResult {
         
         let upcomingMovies = upcomingResult.results
@@ -58,7 +66,7 @@ class UpcomingMoviesListPresenter: UpcomingMoviesListPresentationLogic
         var displayUpcomingMovies:[DisplayUpcomingMovie] = []
         
         let dateFormatterToDate   = DateFormatter().getDateFormatter(withFormat: "yyyy-MM-dd")
-        let dateFormatterToString = DateFormatter().getDateFormatter(withFormat: "dd/MM/yyyy")
+        let dateFormatterToString = DateFormatter().getDateFormatter(withFormat: "MMMM dd, yyyy")
         
         DispatchQueue.global(qos: .utility).sync {
             

@@ -14,28 +14,25 @@ import UIKit
 
 protocol UpcomingMovieDetailBusinessLogic
 {
-  func doSomething(request: UpcomingMovieDetail.Something.Request)
+    func getMovieDetail(request: UpcomingMovieDetail.MovieDetail.Request)
 }
 
 protocol UpcomingMovieDetailDataStore
 {
-  //var name: String { get set }
+    var upcomingMovie:DisplayUpcomingMovie? { get set }
 }
 
 class UpcomingMovieDetailInteractor: UpcomingMovieDetailBusinessLogic, UpcomingMovieDetailDataStore
 {
-  var presenter: UpcomingMovieDetailPresentationLogic?
-  var worker: UpcomingMovieDetailWorker?
-  //var name: String = ""
-  
-  // MARK: Do something
-  
-  func doSomething(request: UpcomingMovieDetail.Something.Request)
-  {
-    worker = UpcomingMovieDetailWorker()
-    worker?.doSomeWork()
+    var presenter: UpcomingMovieDetailPresentationLogic?
+    var worker: UpcomingMovieDetailWorker?
+    var upcomingMovie:DisplayUpcomingMovie?
     
-    let response = UpcomingMovieDetail.Something.Response()
-    presenter?.presentSomething(response: response)
-  }
+    // MARK: Do something
+    
+    func getMovieDetail(request: UpcomingMovieDetail.MovieDetail.Request) {
+        
+        let response = UpcomingMovieDetail.MovieDetail.Response(upcomingMoviesDetail: self.upcomingMovie!)
+        presenter?.presentMovieDetail(response: response)
+    }
 }

@@ -64,6 +64,17 @@ enum UpcomingMoviesList
             var filteredUpcomingMovies:[DisplayUpcomingMovie]
         }
     }
+    
+    enum MovieDetail{
+        
+        struct Request {
+            var upcomingMovie:DisplayUpcomingMovie
+        }
+        struct Response {
+        }
+        struct ViewModel {
+        }
+    }
 }
 
 struct DisplayUpcomingMoviesResult{

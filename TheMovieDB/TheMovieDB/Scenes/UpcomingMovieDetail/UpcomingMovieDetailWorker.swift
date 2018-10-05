@@ -14,7 +14,7 @@ import UIKit
 
 class UpcomingMovieDetailWorker
 {
-  func doSomeWork()
-  {
-  }
+    func doSomeWork()
+    {
+    }
 }

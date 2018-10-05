@@ -14,47 +14,41 @@ import UIKit
 
 @objc protocol UpcomingMoviesListRoutingLogic
 {
-  //func routeToSomewhere(segue: UIStoryboardSegue?)
+    func routeToUpcomingMovieDetail(segue: UIStoryboardSegue?)
 }
 
 protocol UpcomingMoviesListDataPassing
 {
-  var dataStore: UpcomingMoviesListDataStore? { get }
+    var dataStore: UpcomingMoviesListDataStore? { get }
 }
 
 class UpcomingMoviesListRouter: NSObject, UpcomingMoviesListRoutingLogic, UpcomingMoviesListDataPassing
 {
-  weak var viewController: UpcomingMoviesListViewController?
-  var dataStore: UpcomingMoviesListDataStore?
-  
-  // MARK: Routing
-  
-  //func routeToSomewhere(segue: UIStoryboardSegue?)
-  //{
-  //  if let segue = segue {
-  //    let destinationVC = segue.destination as! SomewhereViewController
-  //    var destinationDS = destinationVC.router!.dataStore!
-  //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-  //  } else {
-  //    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-  //    let destinationVC = storyboard.instantiateViewController(withIdentifier: "SomewhereViewController") as! SomewhereViewController
-  //    var destinationDS = destinationVC.router!.dataStore!
-  //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-  //    navigateToSomewhere(source: viewController!, destination: destinationVC)
-  //  }
-  //}
-
-  // MARK: Navigation
-  
-  //func navigateToSomewhere(source: UpcomingMoviesListViewController, destination: SomewhereViewController)
-  //{
-  //  source.show(destination, sender: nil)
-  //}
-  
-  // MARK: Passing data
-  
-  //func passDataToSomewhere(source: UpcomingMoviesListDataStore, destination: inout SomewhereDataStore)
-  //{
-  //  destination.name = source.name
-  //}
+    weak var viewController: UpcomingMoviesListViewController?
+    var dataStore: UpcomingMoviesListDataStore?
+    
+    // MARK: Routing
+ 
+    func routeToUpcomingMovieDetail(segue: UIStoryboardSegue?) {
+        
+        if let segue = segue {
+            let destinationVC = segue.destination as! UpcomingMovieDetailViewController
+            var destinationDS = destinationVC.router!.dataStore!
+            passDataToUpcomingMovieDetailt(source: dataStore!, destination: &destinationDS)
+        }
+    }
+    
+    // MARK: Navigation
+    
+    func navigateToUpcomingMovieDetail(source: UpcomingMoviesListViewController, destination: UpcomingMovieDetailViewController)
+    {
+        source.show(destination, sender: nil)
+    }
+    
+    // MARK: Passing data
+    
+    func passDataToUpcomingMovieDetailt(source: UpcomingMoviesListDataStore, destination: inout UpcomingMovieDetailDataStore)
+    {
+        destination.upcomingMovie = source.upcomingMovie
+    }
 }
