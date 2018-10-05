@@ -54,12 +54,14 @@ enum UpcomingMoviesList
         
         struct Request {
             var text:String
+            var upcomingMovies:[DisplayUpcomingMovie]
         }
         struct Response {
             var text:String
+            var upcomingMovies:[DisplayUpcomingMovie]
         }
         struct ViewModel {
-            var filteredUpcomingMovies:DisplayUpcomingMoviesResult?
+            var filteredUpcomingMovies:[DisplayUpcomingMovie]
         }
     }
 }

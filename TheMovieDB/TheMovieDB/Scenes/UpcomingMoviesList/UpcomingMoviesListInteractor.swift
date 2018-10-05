@@ -65,7 +65,7 @@ class UpcomingMoviesListInteractor: UpcomingMoviesListBusinessLogic, UpcomingMov
     }
     
     func getFilteredUpcomingMoview(request: UpcomingMoviesList.FilteredMovies.Request) {
-//        let response = UpcomingMoviesList.FilteredMovies.Response(text:request.text)
-//        presenter?.presentSomething(response:response)
+        let response = UpcomingMoviesList.FilteredMovies.Response(text:request.text, upcomingMovies: request.upcomingMovies)
+        presenter?.presentFilteredUpcomingMovies(response:response)
     }
 }

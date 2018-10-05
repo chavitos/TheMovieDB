@@ -17,6 +17,7 @@ class UpcomingMovieTableViewCell: UITableViewCell {
     @IBOutlet weak var releaseDateLabel: UILabel!
     
     let genreCellIdentifier = "genreCell"
+    let baseImageURLPath = "https://image.tmdb.org/t/p/w500"
     var genreList:[String] = []
     
     override func prepareForReuse() {
@@ -36,6 +37,13 @@ class UpcomingMovieTableViewCell: UITableViewCell {
         
         genreList = upcomingMovie.genre
         genreCollection.reloadData()
+        
+        DispatchQueue.main.async {
+            
+            let imageURL = upcomingMovie.posterPath.isEmpty ? self.baseImageURLPath + upcomingMovie.backdropPath : self.baseImageURLPath + upcomingMovie.posterPath
+            self.moviePosterImageView.sd_setImage(with: URL(string: imageURL),
+                                                  placeholderImage: UIImage(named: "picture_placeholder"))
+        }
     }
 }
 

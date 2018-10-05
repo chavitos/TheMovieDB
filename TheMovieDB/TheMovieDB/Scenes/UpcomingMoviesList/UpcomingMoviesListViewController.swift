@@ -81,6 +81,8 @@ class UpcomingMoviesListViewController: UIViewController, UpcomingMoviesListDisp
     //MARK: - Variables
     var nextPage:Int = 1
     var upcomingMoviesList:[DisplayUpcomingMovie] = []
+    var filteredUpcomingMoviesList:[DisplayUpcomingMovie] = []
+    var filtering = false
     
     let upcomingCellIdentifier = "movieCell"
     
@@ -94,7 +96,7 @@ class UpcomingMoviesListViewController: UIViewController, UpcomingMoviesListDisp
     
     private func getFilteredUpcomingMovies(withName name:String) {
         
-        let request = UpcomingMoviesList.FilteredMovies.Request(text:name)
+        let request = UpcomingMoviesList.FilteredMovies.Request(text:name, upcomingMovies: upcomingMoviesList)
         interactor?.getFilteredUpcomingMoview(request: request)
     }
     
@@ -118,19 +120,21 @@ class UpcomingMoviesListViewController: UIViewController, UpcomingMoviesListDisp
     
     func displayFilteredUpcomingMovies(viewModel: UpcomingMoviesList.FilteredMovies.ViewModel) {
         
-        
+        filteredUpcomingMoviesList = viewModel.filteredUpcomingMovies
+        filtering = true
+        upcomingMoviesTable.reloadData()
     }
 }
 
 extension UpcomingMoviesListViewController:UITableViewDataSource,UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return upcomingMoviesList.count
+        return filtering ? filteredUpcomingMoviesList.count : upcomingMoviesList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let upcomingMovie = upcomingMoviesList[indexPath.row]
+        let upcomingMovie = filtering ? filteredUpcomingMoviesList[indexPath.row] : upcomingMoviesList[indexPath.row]
         
         let cell = tableView.dequeueReusableCell(withIdentifier: upcomingCellIdentifier, for: indexPath) as! UpcomingMovieTableViewCell
         cell.configCell(withUpcomingMovie: upcomingMovie)
@@ -151,7 +155,8 @@ extension UpcomingMoviesListViewController:UISearchBarDelegate{
         if !searchText.isEmpty {
             getFilteredUpcomingMovies(withName: searchText)
         }else{
-            //TODO - Volta para a lista já existente
+            filtering = false
+            upcomingMoviesTable.reloadData()
         }
     }
 }
