@@ -33,15 +33,19 @@ class GenresWorker
             result = try context.fetch(fetch)
         }catch let error{
             NSLog("Error trying to access coredata Genre: \(error)")
+            return
         }
         
         if result.count <= 0 {
+            NSLog("Genres are not saved in coredata...Requesting in network...")
             worker?.getGenresList(completionHandler: { (genreList: () throws -> [GenreData])->Void in
                 
                 do {
                     let genreList = try genreList()
+                    NSLog("Genres downloaded!")
                     completionHandler(genreList,nil)
                 }catch let error{
+                    NSLog("Error trying to get genres in network \(error.localizedDescription)")
                     completionHandler(nil,error)
                 }
             })
@@ -54,8 +58,10 @@ class GenresWorker
             
             do{
                 let genreList = try genreList()
+                NSLog("Genres with ids \(ids) fetched")
                 completionHandler(genreList,nil)
             }catch let error{
+                NSLog("Error trying to fetch genres with ids \(ids)")
                 completionHandler(nil,error)
             }
         })

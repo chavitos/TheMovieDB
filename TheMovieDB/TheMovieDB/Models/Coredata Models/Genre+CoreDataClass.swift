@@ -17,6 +17,7 @@ public class Genre: NSManagedObject {
         
         let context = CoreDataManager.sharedInstance.persistentContainer.viewContext
         
+        NSLog("Saving Genres in coredata...")
         for genre in genres{
     
             if let genreObj = NSEntityDescription.insertNewObject(forEntityName: "Genre", into: context) as? Genre {
@@ -27,6 +28,7 @@ public class Genre: NSManagedObject {
         }
         
         CoreDataManager.sharedInstance.saveContext()
+        NSLog("Genres saved!")
     }
     
     static func getGenreData(withIds ids:[Int]) -> ([GenreData]?,Error?) {
@@ -35,11 +37,15 @@ public class Genre: NSManagedObject {
         let fetch = Genre.genreFetchRequest()
         fetch.predicate = NSPredicate(format: "id IN %@", ids)
         
+        NSLog("Getting genres with \(fetch.predicate!)")
+        
         do{
             let result:[Genre] = try context.fetch(fetch)
             let genresData = GenreData.getGenreData(ofGenres: result)
+            NSLog("Genres with \(fetch.predicate!) fetched with success")
             return (genresData,nil)
         }catch let error{
+            NSLog("Failed trying to get genres with \(fetch.predicate!)")
             return (nil,error)
         }
     }

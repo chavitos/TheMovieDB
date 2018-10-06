@@ -18,6 +18,7 @@ class GenresNetworkWorker: GenresListWorkerProtocol {
                 do{
                     let jsonDecoder = JSONDecoder()
                     let responseModel = try jsonDecoder.decode(GenresResult.self, from: data)
+                    NSLog("\(responseModel.genres.count) genres returned")
                     completionHandler{ return responseModel.genres }
                 }catch let error {
                     completionHandler{ throw error }

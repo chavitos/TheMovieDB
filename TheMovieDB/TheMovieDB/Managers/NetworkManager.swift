@@ -65,11 +65,15 @@ class NetworkManager {
         
         Alamofire.request(url).validate().responseJSON { response in
             
+            NSLog("Requesting: \(url.urlRequest!)")
+            
             switch response.result {
             case .success:
                 let data = response.data
+                NSLog("Request successed!")
                 callback(data, nil)
             case .failure(let error):
+                NSLog("Request failed! \(error.localizedDescription)")
                 callback(nil, error)
             }
         }

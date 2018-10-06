@@ -18,6 +18,7 @@ class UpcomingMoviesNetworkWorker:UpcomingMoviesListWorkerProtocol {
                 do{
                     let jsonDecoder = JSONDecoder()
                     let responseModel = try jsonDecoder.decode(UpcomingMovieResult.self, from: data)
+                    NSLog("\(responseModel.results.count) movies, of \(responseModel.totalResults), returned to page \(responseModel.page) of \(responseModel.totalPages)")
                     completionHandler{ return responseModel }
                 }catch let error {
                     completionHandler{ throw error }

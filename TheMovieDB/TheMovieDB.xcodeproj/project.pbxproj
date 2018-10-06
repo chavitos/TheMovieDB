@@ -17,7 +17,6 @@
 		E9CCFCCA21655E1F0055648C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9CCFCC821655E1F0055648C /* Main.storyboard */; };
 		E9CCFCCC21655E210055648C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9CCFCCB21655E210055648C /* Assets.xcassets */; };
 		E9CCFCCF21655E210055648C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9CCFCCD21655E210055648C /* LaunchScreen.storyboard */; };
-		E9CCFCDA21655E210055648C /* TheMovieDBTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CCFCD921655E210055648C /* TheMovieDBTests.swift */; };
 		E9CCFCE521655E210055648C /* TheMovieDBUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CCFCE421655E210055648C /* TheMovieDBUITests.swift */; };
 		E9CCFD01216587C20055648C /* UpcomingMoviesListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CCFCFB216587C20055648C /* UpcomingMoviesListPresenter.swift */; };
 		E9CCFD02216587C20055648C /* UpcomingMoviesListWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CCFCFC216587C20055648C /* UpcomingMoviesListWorker.swift */; };
@@ -86,7 +85,6 @@
 		E9CCFCCE21655E210055648C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E9CCFCD021655E210055648C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9CCFCD521655E210055648C /* TheMovieDBTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TheMovieDBTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E9CCFCD921655E210055648C /* TheMovieDBTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheMovieDBTests.swift; sourceTree = "<group>"; };
 		E9CCFCDB21655E210055648C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9CCFCE021655E210055648C /* TheMovieDBUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TheMovieDBUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9CCFCE421655E210055648C /* TheMovieDBUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheMovieDBUITests.swift; sourceTree = "<group>"; };
@@ -225,7 +223,6 @@
 		E9CCFCD821655E210055648C /* TheMovieDBTests */ = {
 			isa = PBXGroup;
 			children = (
-				E9CCFCD921655E210055648C /* TheMovieDBTests.swift */,
 				E9CCFCDB21655E210055648C /* Info.plist */,
 			);
 			path = TheMovieDBTests;
@@ -610,7 +607,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E9CCFCDA21655E210055648C /* TheMovieDBTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
