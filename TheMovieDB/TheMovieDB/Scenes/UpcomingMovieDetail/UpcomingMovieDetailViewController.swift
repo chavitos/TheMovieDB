@@ -91,11 +91,13 @@ class UpcomingMovieDetailViewController: UIViewController, UpcomingMovieDetailDi
     @IBOutlet weak var genresCollection: UICollectionView!
     @IBOutlet weak var releaseDateLabel: UILabel!
     
+    @IBOutlet weak var overviewConstraint: NSLayoutConstraint!
+    
     var genreList:[String] = []
     
     private func getMovieDetail()
     {
-        let request = UpcomingMovieDetail.MovieDetail.Request()
+        let request = UpcomingMovieDetail.MovieDetail.Request(overviewFont: movieOverviewLabel.font, overviewWidth: movieOverviewLabel.frame.size.width)
         interactor?.getMovieDetail(request: request)
     }
     
@@ -105,6 +107,7 @@ class UpcomingMovieDetailViewController: UIViewController, UpcomingMovieDetailDi
         
         movieTitleLabel.text = upcomingMovie.title
         movieOverviewLabel.text = upcomingMovie.overview
+        overviewConstraint.constant = viewModel.overviewHeightConstraint
         releaseDateLabel.text = upcomingMovie.releaseDate
         
         genresCollection.dataSource = self
@@ -115,6 +118,8 @@ class UpcomingMovieDetailViewController: UIViewController, UpcomingMovieDetailDi
         let imageURL = upcomingMovie.backdropPath.isEmpty ? baseImageURLPath + upcomingMovie.posterPath : baseImageURLPath + upcomingMovie.backdropPath
         self.movieImageView.sd_setImage(with: URL(string: imageURL),
                                         placeholderImage: UIImage(named: "picture_placeholder"))
+        
+        self.view.layoutIfNeeded()
     }
 }
 

@@ -20,14 +20,19 @@ enum UpcomingMovieDetail
     {
         struct Request
         {
+            var overviewFont:UIFont
+            var overviewWidth:CGFloat
         }
         struct Response
         {
+            var overviewFont:UIFont
+            var overviewWidth:CGFloat
             var upcomingMoviesDetail:DisplayUpcomingMovie
         }
         struct ViewModel
         {
             var upcomingMoviesDetail:DisplayUpcomingMovie
+            var overviewHeightConstraint:CGFloat
         }
     }
 }

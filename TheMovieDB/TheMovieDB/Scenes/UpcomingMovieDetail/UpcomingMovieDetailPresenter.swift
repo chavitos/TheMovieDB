@@ -25,7 +25,11 @@ class UpcomingMovieDetailPresenter: UpcomingMovieDetailPresentationLogic
     
     func presentMovieDetail(response: UpcomingMovieDetail.MovieDetail.Response) {
         
-        let viewModel = UpcomingMovieDetail.MovieDetail.ViewModel(upcomingMoviesDetail: response.upcomingMoviesDetail)
+        let overviewHeightConstraint = response.upcomingMoviesDetail.overview.height(withConstrainedWidth: response.overviewWidth,
+                                                                                     font: response.overviewFont)
+        
+        let viewModel = UpcomingMovieDetail.MovieDetail.ViewModel(upcomingMoviesDetail: response.upcomingMoviesDetail,
+                                                                  overviewHeightConstraint: overviewHeightConstraint)
         viewController?.displayMovieDetail(viewModel: viewModel)
     }
 }

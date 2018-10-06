@@ -32,7 +32,7 @@ class UpcomingMovieDetailInteractor: UpcomingMovieDetailBusinessLogic, UpcomingM
     
     func getMovieDetail(request: UpcomingMovieDetail.MovieDetail.Request) {
         
-        let response = UpcomingMovieDetail.MovieDetail.Response(upcomingMoviesDetail: self.upcomingMovie!)
+        let response = UpcomingMovieDetail.MovieDetail.Response(overviewFont: request.overviewFont, overviewWidth: request.overviewWidth, upcomingMoviesDetail: self.upcomingMovie!)
         presenter?.presentMovieDetail(response: response)
     }
 }
