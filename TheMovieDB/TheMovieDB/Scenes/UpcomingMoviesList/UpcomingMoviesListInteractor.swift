@@ -28,16 +28,14 @@ protocol UpcomingMoviesListDataStore
 class UpcomingMoviesListInteractor: UpcomingMoviesListBusinessLogic, UpcomingMoviesListDataStore
 {
     var presenter: UpcomingMoviesListPresentationLogic?
-    var worker: UpcomingMoviesListWorker?
-    var genreWorker: GenresWorker?
+    var worker: UpcomingMoviesListWorker? = UpcomingMoviesListWorker(UpcomingMoviesNetworkWorker())
+    var genreWorker: GenresWorker? = GenresWorker(GenresNetworkWorker(), nil)
     var upcomingMovie: DisplayUpcomingMovie?
     
     // MARK: - UpcomingMoviesListBusinessLogic
     
     func getGenres(request: UpcomingMoviesList.GenresList.Request) {
         
-        let networkWorker = GenresNetworkWorker()
-        genreWorker = GenresWorker(networkWorker, nil)
         genreWorker?.getGenresList(completionHandler: { (genreData, error) in
             
             if error == nil, let genreData = genreData {
@@ -47,10 +45,8 @@ class UpcomingMoviesListInteractor: UpcomingMoviesListBusinessLogic, UpcomingMov
         })
     }
     
-    func getUpcomingMovies(request: UpcomingMoviesList.MoviesList.Request)
-    {
-        let networkWorker = UpcomingMoviesNetworkWorker()
-        worker = UpcomingMoviesListWorker(networkWorker)
+    func getUpcomingMovies(request: UpcomingMoviesList.MoviesList.Request){
+        
         worker?.getUpcomingMovies(ofPage: request.page, completionHandler: { (upcomingMovieResult,error) in
             
             let response:UpcomingMoviesList.MoviesList.Response
@@ -66,7 +62,10 @@ class UpcomingMoviesListInteractor: UpcomingMoviesListBusinessLogic, UpcomingMov
     }
     
     func getFilteredUpcomingMoview(request: UpcomingMoviesList.FilteredMovies.Request) {
-        let response = UpcomingMoviesList.FilteredMovies.Response(text:request.text, upcomingMovies: request.upcomingMovies)
+        
+        let filteredUpcomingMovies = request.upcomingMovies.filter{ $0.title.uppercased().contains(request.text.uppercased()) }
+        
+        let response = UpcomingMoviesList.FilteredMovies.Response(filteredUpcomingMovies:filteredUpcomingMovies)
         presenter?.presentFilteredUpcomingMovies(response:response)
     }
     

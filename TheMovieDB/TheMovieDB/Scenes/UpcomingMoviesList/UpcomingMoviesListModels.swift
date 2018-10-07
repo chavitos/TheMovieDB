@@ -57,8 +57,7 @@ enum UpcomingMoviesList
             var upcomingMovies:[DisplayUpcomingMovie]
         }
         struct Response {
-            var text:String
-            var upcomingMovies:[DisplayUpcomingMovie]
+             var filteredUpcomingMovies:[DisplayUpcomingMovie]
         }
         struct ViewModel {
             var filteredUpcomingMovies:[DisplayUpcomingMovie]
@@ -77,12 +76,12 @@ enum UpcomingMoviesList
     }
 }
 
-struct DisplayUpcomingMoviesResult{
+struct DisplayUpcomingMoviesResult:Equatable{
     let nextPage:Int
     let upcomingMovies:[DisplayUpcomingMovie]
 }
 
-struct DisplayUpcomingMovie {
+struct DisplayUpcomingMovie:Equatable {
     let posterPath:String
     let backdropPath:String
     let overview:String

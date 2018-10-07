@@ -46,8 +46,7 @@ class UpcomingMoviesListPresenter: UpcomingMoviesListPresentationLogic
     func presentFilteredUpcomingMovies(response: UpcomingMoviesList.FilteredMovies.Response) {
         
         let viewModel:UpcomingMoviesList.FilteredMovies.ViewModel
-        let filteredUpcomingMovies = response.upcomingMovies.filter{ $0.title.contains(response.text) }
-        viewModel = UpcomingMoviesList.FilteredMovies.ViewModel(filteredUpcomingMovies:filteredUpcomingMovies)
+        viewModel = UpcomingMoviesList.FilteredMovies.ViewModel(filteredUpcomingMovies:response.filteredUpcomingMovies)
         
         viewController?.displayFilteredUpcomingMovies(viewModel: viewModel)
     }

@@ -116,9 +116,7 @@ class UpcomingMoviesListViewController: UIViewController, UpcomingMoviesListDisp
             nextPage = upcomingMovies.nextPage
             upcomingMoviesList += upcomingMovies.upcomingMovies
             
-            DispatchQueue.main.async {
-                self.upcomingMoviesTable.reloadData()
-            }
+            self.upcomingMoviesTable.reloadData()
         }
     }
     
